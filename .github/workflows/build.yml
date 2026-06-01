@@ -1,0 +1,70 @@
+name: Build APK
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      # gradle-wrapper.jar tidak di-commit, jadi unduh langsung dari distribusi Gradle
+      - name: Download Gradle Wrapper JAR
+        run: |
+          curl -fsSL \
+            "https://services.gradle.org/distributions/gradle-8.7-bin.zip" \
+            -o /tmp/gradle-dist.zip
+          # Ekstrak gradle-wrapper.jar dari dalam distribusi
+          unzip -p /tmp/gradle-dist.zip \
+            "$(unzip -Z1 /tmp/gradle-dist.zip | grep 'gradle-wrapper-' | head -1)" \
+            > gradle/wrapper/gradle-wrapper.jar
+          echo "gradle-wrapper.jar size: $(wc -c < gradle/wrapper/gradle-wrapper.jar) bytes"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Berikan izin eksekusi ke gradlew
+        run: chmod +x gradlew
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/libs.versions.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: BelajarGembira-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: Tampilkan info APK
+        run: |
+          echo "=== APK berhasil dibuat ==="
+          ls -lh app/build/outputs/apk/debug/
