@@ -57,7 +57,9 @@ fun QuizScreen(
 
     val inProgress = quizState as? QuizUiState.InProgress ?: return
 
-    val isTwoColumn = windowSizeClass.widthSizeClass >= WindowWidthSizeClass.Medium &&
+    // Dua kolom hanya untuk tablet landscape (Expanded).
+    // Tablet portrait (Medium) dan ponsel → satu kolom (soal di atas, jawaban di bawah).
+    val isTwoColumn = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Expanded &&
             windowSizeClass.heightSizeClass != WindowHeightSizeClass.Compact
 
     Scaffold(
