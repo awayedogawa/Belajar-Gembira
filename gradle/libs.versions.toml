@@ -6,7 +6,6 @@ lifecycleRuntime = "2.8.2"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
 navigationCompose = "2.7.7"
-windowSizeClass = "1.2.1"
 junit = "4.13.2"
 junitExt = "1.2.1"
 espresso = "3.6.1"
@@ -22,7 +21,8 @@ compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-material3-windowsize = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "windowSizeClass" }
+compose-material3-windowsize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExt" }

@@ -51,7 +51,7 @@ fun ResultScreen(
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(
                 modifier = Modifier
-                    .widthIn(max = if (isWide) 600.dp else Int.MAX_VALUE.dp)
+                    .then(if (isWide) Modifier.widthIn(max = 600.dp) else Modifier)
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
                     .verticalScroll(rememberScrollState()),
