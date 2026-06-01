@@ -29,8 +29,9 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -100,12 +101,11 @@ private fun SingleColumnQuizLayout(
             progress = state.progress,
             timeElapsedSeconds = state.timeElapsedSeconds
         )
-
         Column(
             modifier = Modifier
                 .weight(1f)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
             QuestionCard(text = state.currentQuestion.question.text)
             Spacer(modifier = Modifier.height(16.dp))
@@ -118,9 +118,8 @@ private fun SingleColumnQuizLayout(
                     onClick = { onAnswerSelected(index) }
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
         }
-
         HorizontalDivider()
         NavigationRow(state, onPrevious, onNext, onSubmit)
     }
@@ -141,28 +140,42 @@ private fun TwoColumnQuizLayout(
             progress = state.progress,
             timeElapsedSeconds = state.timeElapsedSeconds
         )
+
+        // Dua kolom: soal (kiri) dan jawaban (kanan) — keduanya dari atas
         Row(
             modifier = Modifier
                 .weight(1f)
                 .padding(horizontal = 16.dp)
         ) {
+            // Kolom kiri: teks soal
             Column(
                 modifier = Modifier
                     .weight(0.45f)
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState())
-                    .padding(end = 12.dp),
-                verticalArrangement = Arrangement.Center
+                    .padding(top = 24.dp, end = 12.dp, bottom = 16.dp),
+                verticalArrangement = Arrangement.Top
             ) {
-                QuestionCard(text = state.currentQuestion.question.text)
+                QuestionCard(
+                    text = state.currentQuestion.question.text,
+                    isTablet = true
+                )
             }
 
+            VerticalDivider(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(vertical = 16.dp)
+            )
+
+            // Kolom kanan: pilihan jawaban — tanpa NavigationRow di sini
             Column(
                 modifier = Modifier
                     .weight(0.55f)
                     .fillMaxHeight()
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.Center
+                    .verticalScroll(rememberScrollState())
+                    .padding(top = 24.dp, start = 12.dp, bottom = 16.dp),
+                verticalArrangement = Arrangement.Top
             ) {
                 state.currentQuestion.question.options.forEachIndexed { index, option ->
                     AnswerOptionButton(
@@ -173,15 +186,21 @@ private fun TwoColumnQuizLayout(
                         onClick = { onAnswerSelected(index) }
                     )
                 }
-                Spacer(modifier = Modifier.height(16.dp))
-                NavigationRow(state, onPrevious, onNext, onSubmit)
             }
         }
+
+        // NavigationRow fixed di bawah — selalu terlihat tanpa perlu scroll
+        HorizontalDivider()
+        NavigationRow(state, onPrevious, onNext, onSubmit)
     }
 }
 
 @Composable
-private fun QuestionCard(text: String, modifier: Modifier = Modifier) {
+private fun QuestionCard(
+    text: String,
+    isTablet: Boolean = false,
+    modifier: Modifier = Modifier
+) {
     Card(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -189,8 +208,9 @@ private fun QuestionCard(text: String, modifier: Modifier = Modifier) {
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(16.dp),
+            style = if (isTablet) MaterialTheme.typography.titleMedium
+                    else MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(20.dp),
             color = MaterialTheme.colorScheme.onSurface
         )
     }
