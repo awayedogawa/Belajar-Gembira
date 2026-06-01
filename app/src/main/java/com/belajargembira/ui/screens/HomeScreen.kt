@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.belajargembira.BuildConfig
 import com.belajargembira.viewmodel.HomeUiState
 
 private val questionCountOptions = listOf(25, 50, 75, 100)
@@ -129,7 +130,17 @@ fun HomeScreen(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "Versi ${BuildConfig.VERSION_NAME}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.35f),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 24.dp)
+                )
             }
         }
     }

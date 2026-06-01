@@ -44,4 +44,17 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.1.0] - 2026-06-01
+
+### Ditambahkan
+- Ikon aplikasi baru: buku terbuka dengan bintang emas, latar belakang amber
+  yang merepresentasikan "Belajar Gembira" (belajar yang menyenangkan)
+- Tampilan nomor versi di bagian bawah layar utama
+
+### Teknis
+- Aktifkan `buildConfig = true` agar `BuildConfig.VERSION_NAME` bisa diakses di Kotlin
+- `versionCode` naik ke 2
+
+---
+
 <!-- Tambahkan versi baru di atas baris ini -->
