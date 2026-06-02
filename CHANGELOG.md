@@ -57,4 +57,20 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.2.0] - 2026-06-02
+
+### Ditambahkan
+- **Skema warna baru** berbasis psikologi warna untuk memberikan rasa gembira pada siswa-siswi:
+  - **Oranye hangat** (`#F57C00`) sebagai warna utama — melambangkan kegembiraan, semangat, dan energi
+  - **Biru langit** (`#0288D1`) sebagai warna sekunder — memberikan ketenangan dan fokus belajar
+  - **Ungu** (`#8E24AA`) sebagai warna tersier — merangsang kreativitas dan imajinasi
+  - **Latar belakang krem hangat** (`#FFFDE7`) menggantikan abu-abu dingin — seperti cahaya matahari
+- Tema gelap disesuaikan agar tetap terasa hangat dan tidak dingin
+
+### Teknis
+- `dynamicColor` dimatikan (`false`) agar palet warna kustom selalu tampil di Android 12+
+- `versionCode` naik ke 3
+
+---
+
 <!-- Tambahkan versi baru di atas baris ini -->

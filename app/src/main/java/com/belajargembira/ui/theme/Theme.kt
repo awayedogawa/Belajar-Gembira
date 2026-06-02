@@ -12,16 +12,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val LightColors = lightColorScheme(
-    primary = Blue500,
+    primary = Orange500,
     onPrimary = SurfaceLight,
-    primaryContainer = Blue200,
-    onPrimaryContainer = Blue700,
-    secondary = Amber500,
+    primaryContainer = Orange200,
+    onPrimaryContainer = Orange700,
+    secondary = SkyBlue500,
     onSecondary = SurfaceLight,
-    secondaryContainer = Color(0xFFFFECB3),
-    tertiary = Green600,
+    secondaryContainer = SkyBlue200,
+    onSecondaryContainer = SkyBlue700,
+    tertiary = Purple500,
     onTertiary = SurfaceLight,
-    tertiaryContainer = Green200,
+    tertiaryContainer = Purple200,
+    onTertiaryContainer = Purple700,
     error = Red600,
     errorContainer = Red200,
     background = Background,
@@ -31,14 +33,18 @@ private val LightColors = lightColorScheme(
 )
 
 private val DarkColors = darkColorScheme(
-    primary = Blue200,
-    onPrimary = Blue700,
-    primaryContainer = Blue700,
-    onPrimaryContainer = Blue200,
-    secondary = Amber500,
-    onSecondary = OnSurfaceLight,
-    tertiary = Green200,
-    onTertiary = Green600,
+    primary = Orange200,
+    onPrimary = Orange700,
+    primaryContainer = Orange700,
+    onPrimaryContainer = Orange200,
+    secondary = SkyBlue200,
+    onSecondary = SkyBlue700,
+    secondaryContainer = SkyBlue700,
+    onSecondaryContainer = SkyBlue200,
+    tertiary = Purple200,
+    onTertiary = Purple700,
+    tertiaryContainer = Purple700,
+    onTertiaryContainer = Purple200,
     error = Red200,
     errorContainer = Red600,
     background = SurfaceDark,
@@ -50,7 +56,7 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun BelajarGembiraTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
