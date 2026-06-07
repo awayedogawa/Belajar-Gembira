@@ -62,19 +62,52 @@ class QuizViewModel(
     private val _updateState = MutableStateFlow<UpdateInfo?>(null)
     val updateState: StateFlow<UpdateInfo?> = _updateState.asStateFlow()
 
+    private val _isCheckingUpdate = MutableStateFlow(false)
+    val isCheckingUpdate: StateFlow<Boolean> = _isCheckingUpdate.asStateFlow()
+
+    private val _updateCheckMessage = MutableStateFlow<String?>(null)
+    val updateCheckMessage: StateFlow<String?> = _updateCheckMessage.asStateFlow()
+
     private var timerJob: Job? = null
     private var updateChecked = false
+    private var currentVersion: String = ""
 
     /**
-     * Mengecek versi terbaru aplikasi secara online (sekali per sesi).
+     * Mengecek versi terbaru aplikasi secara online (sekali per sesi, otomatis saat dibuka).
      * Jika ada versi lebih baru, [updateState] akan terisi dan kartu update muncul di Home.
      */
     fun checkForUpdate(currentVersion: String) {
+        this.currentVersion = currentVersion
         if (updateChecked) return
         updateChecked = true
         viewModelScope.launch {
             _updateState.value = UpdateChecker.checkForUpdate(currentVersion)
         }
+    }
+
+    /**
+     * Cek pembaruan secara manual saat pengguna menekan tombol "Cek Pembaruan".
+     * Berbeda dari [checkForUpdate], ini bisa dipanggil berkali-kali dan selalu
+     * memberi umpan balik: kartu update muncul jika ada versi baru, atau pesan
+     * "sudah versi terbaru" jika tidak ada.
+     */
+    fun checkForUpdateManually() {
+        if (_isCheckingUpdate.value || currentVersion.isEmpty()) return
+        viewModelScope.launch {
+            _isCheckingUpdate.value = true
+            _updateCheckMessage.value = null
+            val result = UpdateChecker.checkForUpdate(currentVersion)
+            _isCheckingUpdate.value = false
+            if (result != null) {
+                _updateState.value = result
+            } else {
+                _updateCheckMessage.value = "Kamu sudah memakai versi terbaru ✓"
+            }
+        }
+    }
+
+    fun clearUpdateCheckMessage() {
+        _updateCheckMessage.value = null
     }
 
     fun selectQuestionCount(count: Int) {

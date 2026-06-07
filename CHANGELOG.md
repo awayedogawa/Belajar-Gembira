@@ -98,6 +98,25 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.5.0] - 2026-06-07
+
+### Ditambahkan
+- **Tombol "🔄 Cek Pembaruan"** di layar utama: pengguna kini bisa memeriksa
+  versi terbaru kapan saja secara manual, tidak perlu menunggu pengecekan
+  otomatis saat aplikasi dibuka
+  - Saat memeriksa, tombol menampilkan indikator "Memeriksa pembaruan…"
+  - Jika ada versi baru → kartu pembaruan & tombol **Perbarui Sekarang** muncul
+  - Jika sudah versi terbaru → muncul pesan singkat "Kamu sudah memakai versi
+    terbaru ✓" yang hilang otomatis setelah beberapa detik
+
+### Teknis
+- `QuizViewModel` tambah `checkForUpdateManually()`, `isCheckingUpdate`, dan
+  `updateCheckMessage` (StateFlow) — terpisah dari pengecekan otomatis
+  `checkForUpdate()` agar bisa dipicu berkali-kali oleh pengguna
+- `versionCode` naik ke 6
+
+---
+
 ## [1.4.0] - 2026-06-07
 
 ### Ditambahkan

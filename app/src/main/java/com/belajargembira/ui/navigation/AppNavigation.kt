@@ -28,7 +28,11 @@ fun AppNavigation(
                     viewModel.startQuiz()
                     navController.navigate(Screen.Quiz.route)
                 },
-                updateInfo = viewModel.updateState.collectAsState().value
+                updateInfo = viewModel.updateState.collectAsState().value,
+                isCheckingUpdate = viewModel.isCheckingUpdate.collectAsState().value,
+                updateCheckMessage = viewModel.updateCheckMessage.collectAsState().value,
+                onCheckUpdate = viewModel::checkForUpdateManually,
+                onDismissUpdateCheckMessage = viewModel::clearUpdateCheckMessage
             )
         }
 
