@@ -1,12 +1,21 @@
 name: Release APK
 
-# Membuat GitHub Release berisi APK saat sebuah tag versi (mis. v1.3.0) di-push.
-# Cara rilis: git tag v1.3.0 && git push origin v1.3.0
+# Membuat GitHub Release berisi APK.
+# Dua cara rilis:
+#   1. Push tag versi:   git tag v1.6.0 && git push origin v1.6.0
+#   2. Jalankan manual (workflow_dispatch) lalu isi kolom "version", mis. v1.6.0
+#      — berguna bila tag tidak bisa di-push langsung; tag akan dibuat otomatis
+#      pada commit yang dipilih saat menjalankan workflow.
 on:
   push:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versi rilis (mis. v1.6.0)'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -37,16 +46,25 @@ jobs:
       - name: Build Debug APK
         run: gradle assembleDebug --stacktrace
 
-      - name: Ganti nama APK sesuai tag
+      - name: Tentukan nama versi rilis
+        id: ver
+        run: |
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "name=${{ github.event.inputs.version }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ganti nama APK sesuai versi
         run: |
           mkdir -p release
-          cp app/build/outputs/apk/debug/app-debug.apk "release/BelajarGembira-${GITHUB_REF_NAME}.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "release/BelajarGembira-${{ steps.ver.outputs.name }}.apk"
           ls -lh release/
 
       - name: Buat GitHub Release + lampirkan APK
         uses: softprops/action-gh-release@v2
         with:
-          name: "Belajar Gembira ${{ github.ref_name }}"
-          tag_name: ${{ github.ref_name }}
+          name: "Belajar Gembira ${{ steps.ver.outputs.name }}"
+          tag_name: ${{ steps.ver.outputs.name }}
           generate_release_notes: true
-          files: release/BelajarGembira-${{ github.ref_name }}.apk
+          files: release/BelajarGembira-${{ steps.ver.outputs.name }}.apk
