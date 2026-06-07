@@ -95,8 +95,9 @@ class QuizViewModel(
 
     fun selectAnswer(answerIndex: Int) {
         val current = _quizState.value as? QuizUiState.InProgress ?: return
+        val q = current.questions[current.currentIndex]
+        if (q.selectedIndex != null) return // jawaban sudah terkunci, tidak bisa diganti
         val updatedQuestions = current.questions.toMutableList().also { list ->
-            val q = list[current.currentIndex]
             list[current.currentIndex] = q.copy(selectedIndex = answerIndex)
         }
         _quizState.value = current.copy(questions = updatedQuestions)

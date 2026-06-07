@@ -2,6 +2,7 @@ package com.belajargembira.ui.screens
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,12 +35,19 @@ import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.belajargembira.ui.components.AnswerFeedbackOverlay
 import com.belajargembira.ui.components.AnswerOptionButton
 import com.belajargembira.ui.components.ProgressHeader
 import com.belajargembira.viewmodel.QuizUiState
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,6 +70,21 @@ fun QuizScreen(
     val isTwoColumn = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Expanded &&
             windowSizeClass.heightSizeClass != WindowHeightSizeClass.Compact
 
+    // Tampilkan animasi singkat begitu jawaban dipilih (terkunci) — benar atau salah.
+    val selectedIndex = inProgress.currentQuestion.selectedIndex
+    val isCorrectSelection = selectedIndex != null && selectedIndex == inProgress.currentQuestion.question.correctIndex
+    var feedbackVisible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(inProgress.currentIndex, selectedIndex) {
+        if (selectedIndex != null) {
+            feedbackVisible = true
+            delay(1200L)
+            feedbackVisible = false
+        } else {
+            feedbackVisible = false
+        }
+    }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -79,10 +102,18 @@ fun QuizScreen(
             modifier = Modifier.fillMaxSize().padding(paddingValues),
             color = MaterialTheme.colorScheme.background
         ) {
-            if (isTwoColumn) {
-                TwoColumnQuizLayout(inProgress, onAnswerSelected, onPrevious, onNext, onSubmit)
-            } else {
-                SingleColumnQuizLayout(inProgress, onAnswerSelected, onPrevious, onNext, onSubmit)
+            Box(modifier = Modifier.fillMaxSize()) {
+                if (isTwoColumn) {
+                    TwoColumnQuizLayout(inProgress, onAnswerSelected, onPrevious, onNext, onSubmit)
+                } else {
+                    SingleColumnQuizLayout(inProgress, onAnswerSelected, onPrevious, onNext, onSubmit)
+                }
+
+                AnswerFeedbackOverlay(
+                    visible = feedbackVisible,
+                    isCorrect = isCorrectSelection,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
     }
@@ -116,7 +147,8 @@ private fun SingleColumnQuizLayout(
                     index = index,
                     text = option,
                     selectedIndex = state.currentQuestion.selectedIndex,
-                    correctIndex = null,
+                    correctIndex = if (state.currentQuestion.selectedIndex != null)
+                        state.currentQuestion.question.correctIndex else null,
                     onClick = { onAnswerSelected(index) }
                 )
             }

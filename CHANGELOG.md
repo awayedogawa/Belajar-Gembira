@@ -98,4 +98,37 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.4.0] - 2026-06-07
+
+### Ditambahkan
+- **Koreksi jawaban langsung**: begitu pengguna memilih jawaban, jawaban itu
+  langsung **terkunci** (tidak bisa diganti), animasi **Lottie** singkat
+  muncul (✓ hijau untuk benar, ✗ merah untuk salah), dan pilihan jawaban
+  yang benar langsung diperlihatkan dengan warna hijau/merah — tidak perlu
+  menunggu sampai akhir kuis
+- Pengguna tetap menekan **Lanjut →** secara manual untuk lanjut ke soal
+  berikutnya, menjaga ritme belajar sesuai kecepatan masing-masing anak
+
+### Diperbaiki
+- **Update aplikasi kini bisa langsung dipasang menimpa versi lama** tanpa
+  perlu menghapus aplikasi terdahulu — seluruh build APK (debug & release)
+  kini ditandatangani dengan **keystore tetap** yang sama, sehingga Android
+  mengenali APK baru sebagai pembaruan yang sah dari aplikasi yang sudah
+  terpasang
+
+### Teknis
+- Tambah dependency `lottie-compose` untuk animasi Lottie di Jetpack Compose
+- Berkas animasi baru: `res/raw/anim_jawaban_benar.json` &
+  `res/raw/anim_jawaban_salah.json`
+- Komponen baru `ui/components/AnswerFeedbackOverlay.kt` — overlay animasi
+  benar/salah yang tampil ~1.2 detik setiap jawaban dipilih
+- `QuizViewModel.selectAnswer()` kini mengunci jawaban (mengabaikan pilihan
+  ulang setelah jawaban pertama tercatat)
+- Tambah `signingConfigs` di `app/build.gradle.kts` mengacu pada
+  `keystore/belajar-gembira.jks` (dipakai konsisten oleh `build.yml` dan
+  `release.yml`) agar sertifikat tanda tangan APK selalu sama antar rilis
+- `versionCode` naik ke 5
+
+---
+
 <!-- Tambahkan versi baru di atas baris ini -->

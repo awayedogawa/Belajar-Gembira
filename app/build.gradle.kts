@@ -12,14 +12,30 @@ android {
         applicationId = "com.belajargembira"
         minSdk = 26
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.3.0"
+        versionCode = 5
+        versionName = "1.4.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Keystore tetap (sama untuk semua build CI) agar APK baru selalu punya
+    // tanda tangan yang sama dengan versi sebelumnya — pengguna bisa langsung
+    // update tanpa perlu menghapus aplikasi lama terlebih dahulu.
+    signingConfigs {
+        create("shared") {
+            storeFile = file("../keystore/belajar-gembira.jks")
+            storePassword = "belajarGembira2026"
+            keyAlias = "belajargembira"
+            keyPassword = "belajarGembira2026"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("shared")
+        }
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("shared")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -55,6 +71,7 @@ dependencies {
     implementation(libs.compose.material3.windowsize)
     implementation(libs.compose.material.icons.core)
     implementation(libs.navigation.compose)
+    implementation(libs.lottie.compose)
 
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
