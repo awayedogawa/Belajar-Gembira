@@ -13,6 +13,32 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.6.0] - 2026-06-07
+
+### Ditambahkan
+- **Menu bertingkat untuk Latihan OSN**: alur memilih latihan kini mengikuti
+  tahapan **Pilih Jenjang → Pilih Mata Pelajaran → Pilih Jumlah Soal**, agar
+  aplikasi siap menampung lebih banyak jenjang & mata pelajaran ke depan
+  - Layar utama kini hanya menampilkan satu tombol besar **"🏆 Latihan OSN"**
+  - **Pilih Jenjang**: SD dan SMP
+  - **Pilih Mata Pelajaran**: IPS, IPA, Matematika, Bahasa Indonesia
+  - Kombinasi jenjang & mapel yang bank soalnya belum tersedia (mis. IPA SD,
+    atau jenjang SMP) menampilkan pesan **"belum diaktifkan"** lewat snackbar,
+    pengguna tetap berada di layar pilih mapel
+  - Hanya kombinasi **SD + IPS** yang aktif sekarang (300 soal)
+
+### Teknis
+- Model data baru `Level` (SD, SMP); `Question` kini punya field `level`
+- `QuestionRepository.getRandomQuestions()` & `hasQuestions()` kini memfilter
+  berdasarkan jenjang & mata pelajaran
+- 3 layar baru: `LevelSelectionScreen`, `SubjectSelectionScreen`,
+  `QuizSetupScreen` (memindahkan kartu "Pilih Jumlah Soal" dari `HomeScreen`)
+- `QuizViewModel` tambah `selectionState` (StateFlow) beserta `selectLevel()`
+  dan `trySelectSubject()` untuk menyimpan & memvalidasi pilihan pengguna
+- `versionCode` naik ke 7
+
+---
+
 ## [1.0.0] - 2026-06-01
 
 ### Rilis Perdana

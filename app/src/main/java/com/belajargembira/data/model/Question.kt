@@ -6,7 +6,8 @@ data class Question(
     val text: String,
     val options: List<String>,
     val correctIndex: Int,
-    val difficulty: Difficulty
+    val difficulty: Difficulty,
+    val level: Level = Level.SD
 ) {
     init {
         require(options.size == 4) { "Question $id must have exactly 4 options" }

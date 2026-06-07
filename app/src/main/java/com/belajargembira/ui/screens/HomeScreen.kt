@@ -3,7 +3,6 @@ package com.belajargembira.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +18,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,16 +36,11 @@ import android.net.Uri
 import kotlinx.coroutines.delay
 import com.belajargembira.BuildConfig
 import com.belajargembira.data.update.UpdateInfo
-import com.belajargembira.viewmodel.HomeUiState
-
-private val questionCountOptions = listOf(25, 50, 75, 100)
 
 @Composable
 fun HomeScreen(
     windowSizeClass: WindowSizeClass,
-    homeState: HomeUiState,
-    onCountSelected: (Int) -> Unit,
-    onStart: () -> Unit,
+    onStartLatihan: () -> Unit,
     updateInfo: UpdateInfo? = null,
     isCheckingUpdate: Boolean = false,
     updateCheckMessage: String? = null,
@@ -138,7 +131,7 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Latihan Soal OSN IPS Tingkat SD",
+                    text = "Latihan Soal Olimpiade Sains Nasional",
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                     textAlign = TextAlign.Center
@@ -146,59 +139,14 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.height(40.dp))
 
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = "Pilih Jumlah Soal",
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            questionCountOptions.forEach { count ->
-                                FilterChip(
-                                    selected = homeState.questionCount == count,
-                                    onClick = { onCountSelected(count) },
-                                    label = {
-                                        Text(
-                                            text = "$count",
-                                            style = MaterialTheme.typography.labelLarge
-                                        )
-                                    }
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "${homeState.questionCount} soal dipilih",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(32.dp))
-
                 Button(
-                    onClick = onStart,
+                    onClick = onStartLatihan,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp)
                 ) {
                     Text(
-                        text = "Mulai Latihan",
+                        text = "🏆 Latihan OSN",
                         style = MaterialTheme.typography.titleMedium
                     )
                 }

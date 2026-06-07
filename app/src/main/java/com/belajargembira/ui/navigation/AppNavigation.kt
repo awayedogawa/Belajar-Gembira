@@ -6,9 +6,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.belajargembira.data.model.Level
+import com.belajargembira.data.model.Subject
 import com.belajargembira.ui.screens.HomeScreen
+import com.belajargembira.ui.screens.LevelSelectionScreen
 import com.belajargembira.ui.screens.QuizScreen
+import com.belajargembira.ui.screens.QuizSetupScreen
 import com.belajargembira.ui.screens.ResultScreen
+import com.belajargembira.ui.screens.SubjectSelectionScreen
 import com.belajargembira.viewmodel.QuizViewModel
 
 @Composable
@@ -22,17 +27,56 @@ fun AppNavigation(
         composable(Screen.Home.route) {
             HomeScreen(
                 windowSizeClass = windowSizeClass,
-                homeState = viewModel.homeState.collectAsState().value,
-                onCountSelected = viewModel::selectQuestionCount,
-                onStart = {
-                    viewModel.startQuiz()
-                    navController.navigate(Screen.Quiz.route)
+                onStartLatihan = {
+                    navController.navigate(Screen.LevelSelection.route)
                 },
                 updateInfo = viewModel.updateState.collectAsState().value,
                 isCheckingUpdate = viewModel.isCheckingUpdate.collectAsState().value,
                 updateCheckMessage = viewModel.updateCheckMessage.collectAsState().value,
                 onCheckUpdate = viewModel::checkForUpdateManually,
                 onDismissUpdateCheckMessage = viewModel::clearUpdateCheckMessage
+            )
+        }
+
+        composable(Screen.LevelSelection.route) {
+            LevelSelectionScreen(
+                windowSizeClass = windowSizeClass,
+                onLevelSelected = { level ->
+                    viewModel.selectLevel(level)
+                    navController.navigate(Screen.SubjectSelection.route)
+                },
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.SubjectSelection.route) {
+            val selection = viewModel.selectionState.collectAsState().value
+            SubjectSelectionScreen(
+                windowSizeClass = windowSizeClass,
+                level = selection.level ?: Level.SD,
+                onSelectSubject = viewModel::trySelectSubject,
+                onNavigateToQuizSetup = {
+                    navController.navigate(Screen.QuizSetup.route)
+                },
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Screen.QuizSetup.route) {
+            val selection = viewModel.selectionState.collectAsState().value
+            QuizSetupScreen(
+                windowSizeClass = windowSizeClass,
+                level = selection.level ?: Level.SD,
+                subject = selection.subject ?: Subject.IPS,
+                homeState = viewModel.homeState.collectAsState().value,
+                onCountSelected = viewModel::selectQuestionCount,
+                onStart = {
+                    viewModel.startQuiz()
+                    navController.navigate(Screen.Quiz.route) {
+                        popUpTo(Screen.Home.route)
+                    }
+                },
+                onBack = { navController.popBackStack() }
             )
         }
 

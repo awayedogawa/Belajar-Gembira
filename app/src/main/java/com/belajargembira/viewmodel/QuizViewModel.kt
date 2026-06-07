@@ -2,7 +2,9 @@ package com.belajargembira.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.belajargembira.data.model.Level
 import com.belajargembira.data.model.Question
+import com.belajargembira.data.model.Subject
 import com.belajargembira.data.repository.QuestionRepository
 import com.belajargembira.data.update.UpdateChecker
 import com.belajargembira.data.update.UpdateInfo
@@ -15,6 +17,11 @@ import kotlinx.coroutines.launch
 
 data class HomeUiState(
     val questionCount: Int = 25
+)
+
+data class SelectionUiState(
+    val level: Level? = null,
+    val subject: Subject? = null
 )
 
 data class QuizQuestionState(
@@ -55,6 +62,9 @@ class QuizViewModel(
 
     private val _homeState = MutableStateFlow(HomeUiState())
     val homeState: StateFlow<HomeUiState> = _homeState.asStateFlow()
+
+    private val _selectionState = MutableStateFlow(SelectionUiState())
+    val selectionState: StateFlow<SelectionUiState> = _selectionState.asStateFlow()
 
     private val _quizState = MutableStateFlow<QuizUiState>(QuizUiState.Idle)
     val quizState: StateFlow<QuizUiState> = _quizState.asStateFlow()
@@ -115,9 +125,34 @@ class QuizViewModel(
         _homeState.value = _homeState.value.copy(questionCount = validated)
     }
 
+    /**
+     * Pilih jenjang (SD/SMP) — mereset mata pelajaran yang sebelumnya terpilih.
+     */
+    fun selectLevel(level: Level) {
+        _selectionState.value = SelectionUiState(level = level)
+    }
+
+    /**
+     * Coba pilih mata pelajaran. Mengembalikan true & menyimpan pilihan jika
+     * bank soal untuk kombinasi jenjang+mapel ini sudah tersedia; false jika
+     * belum (layar pemanggil akan menampilkan pesan "fitur belum diaktifkan").
+     */
+    fun trySelectSubject(subject: Subject): Boolean {
+        val level = _selectionState.value.level ?: return false
+        return if (repository.hasQuestions(level, subject)) {
+            _selectionState.value = _selectionState.value.copy(subject = subject)
+            true
+        } else {
+            false
+        }
+    }
+
     fun startQuiz() {
+        val selection = _selectionState.value
+        val level = selection.level ?: Level.SD
+        val subject = selection.subject ?: Subject.IPS
         val count = _homeState.value.questionCount
-        val questions = repository.getRandomQuestions(count).map { QuizQuestionState(it) }
+        val questions = repository.getRandomQuestions(count, level, subject).map { QuizQuestionState(it) }
         _quizState.value = QuizUiState.InProgress(
             questions = questions,
             currentIndex = 0,
