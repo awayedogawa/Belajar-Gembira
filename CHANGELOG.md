@@ -13,6 +13,23 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.6.1] - 2026-06-07
+
+### Diperbaiki
+- **Tombol "Perbarui Sekarang" kini mengarah ke halaman rilis**, bukan
+  langsung memicu unduhan berkas APK. Sebelumnya unduhan langsung lewat
+  browser kerap **tertahan di 100% tanpa pernah selesai** dan tanpa pesan
+  error di sebagian perangkat. Sekarang pengguna diarahkan ke halaman rilis
+  GitHub, lalu mengunduh APK secara manual lewat jalur unduhan normal browser
+  yang lebih stabil
+
+### Teknis
+- `UpdateChecker` kini selalu memakai `html_url` (tautan halaman rilis)
+  sebagai `UpdateInfo.downloadUrl`, menghapus logika pencarian aset `.apk`
+- `versionCode` naik ke 8
+
+---
+
 ## [1.6.0] - 2026-06-07
 
 ### Ditambahkan

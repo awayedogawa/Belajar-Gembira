@@ -20,8 +20,9 @@ data class UpdateInfo(
  *
  * Aplikasi memanggil endpoint publik GitHub Releases (tanpa token), membandingkan
  * `tag_name` rilis terbaru dengan versi yang sedang berjalan. Jika rilis lebih baru,
- * mengembalikan [UpdateInfo] berisi tautan unduh berkas APK; jika tidak / gagal /
- * offline, mengembalikan null tanpa membuat aplikasi berhenti.
+ * mengembalikan [UpdateInfo] berisi tautan ke halaman rilis (tempat pengguna mengunduh
+ * APK secara manual lewat browser); jika tidak / gagal / offline, mengembalikan null
+ * tanpa membuat aplikasi berhenti.
  */
 object UpdateChecker {
 
@@ -48,21 +49,11 @@ object UpdateChecker {
             if (remoteVersion.isEmpty()) return@withContext null
             if (!isNewerVersion(remoteVersion, currentVersion)) return@withContext null
 
-            // Cari aset berkas .apk untuk tautan unduh; jika tidak ada, pakai halaman rilis.
-            val assets = json.optJSONArray("assets")
-            var apkUrl: String? = null
-            if (assets != null) {
-                for (i in 0 until assets.length()) {
-                    val asset = assets.optJSONObject(i) ?: continue
-                    val name = asset.optString("name")
-                    if (name.endsWith(".apk", ignoreCase = true)) {
-                        apkUrl = asset.optString("browser_download_url")
-                        break
-                    }
-                }
-            }
-            val downloadUrl = apkUrl
-                ?: json.optString("html_url").ifEmpty { return@withContext null }
+            // Arahkan ke halaman rilis (bukan tautan unduh APK langsung) — unduhan
+            // langsung lewat ACTION_VIEW kerap tertahan di 100% tanpa selesai di
+            // sebagian browser/perangkat. Di halaman rilis, pengguna mengunduh
+            // APK secara manual lewat jalur unduhan normal browser yang lebih stabil.
+            val downloadUrl = json.optString("html_url").ifEmpty { return@withContext null }
 
             UpdateInfo(
                 versionName = remoteVersion,
