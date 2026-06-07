@@ -821,5 +821,413 @@ object IpsQuestions {
         add(Question(200, Subject.IPS, "Tujuan utama pembentukan ASEAN adalah ...",
             listOf("Memenangkan persaingan militer dengan negara lain", "Mempercepat pertumbuhan ekonomi, kemajuan sosial, dan pengembangan budaya di kawasan Asia Tenggara serta menjaga stabilitas perdamaian", "Membentuk mata uang tunggal ASEAN", "Menjadi bagian dari PBB"),
             1, Difficulty.MEDIUM))
+
+        // ── KEANEKARAGAMAN HAYATI & PERSEBARAN FLORA-FAUNA (201-300) ──────────
+
+        // -- Garis Wallace & Garis Weber (201-215) --
+        add(Question(201, Subject.IPS, "Garis khayal yang memisahkan persebaran fauna Indonesia bagian barat dengan bagian tengah disebut garis ...",
+            listOf("Garis Weber", "Garis Wallace", "Garis Khatulistiwa", "Garis Lintang"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(202, Subject.IPS, "Garis khayal yang memisahkan persebaran fauna Indonesia bagian tengah dengan bagian timur disebut garis ...",
+            listOf("Garis Wallace", "Garis Bujur", "Garis Weber", "Garis Balik"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(203, Subject.IPS, "Wilayah persebaran flora dan fauna Indonesia dibagi menjadi ... wilayah.",
+            listOf("Dua", "Tiga", "Empat", "Lima"),
+            1, Difficulty.EASY))
+
+        add(Question(204, Subject.IPS, "Fauna di Indonesia bagian barat memiliki ciri yang mirip dengan fauna di benua ...",
+            listOf("Australia", "Afrika", "Asia", "Eropa"),
+            2, Difficulty.EASY))
+
+        add(Question(205, Subject.IPS, "Fauna di Indonesia bagian timur memiliki ciri yang mirip dengan fauna di benua ...",
+            listOf("Asia", "Australia", "Amerika", "Eropa"),
+            1, Difficulty.EASY))
+
+        add(Question(206, Subject.IPS, "Fauna Indonesia bagian tengah disebut juga fauna tipe ...",
+            listOf("Asiatis", "Australis", "Peralihan", "Endemik"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(207, Subject.IPS, "Berikut ini yang termasuk wilayah persebaran fauna Indonesia bagian barat adalah ...",
+            listOf("Sumatra, Kalimantan, Jawa, Bali", "Sulawesi dan Nusa Tenggara", "Papua dan sekitarnya", "Maluku dan Papua"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(208, Subject.IPS, "Pulau Sulawesi dan Nusa Tenggara termasuk dalam wilayah persebaran fauna Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Utara"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(209, Subject.IPS, "Pulau Papua termasuk dalam wilayah persebaran fauna Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Selatan"),
+            2, Difficulty.EASY))
+
+        add(Question(210, Subject.IPS, "Garis Wallace dinamai sesuai nama seorang ilmuwan dari negara ...",
+            listOf("Belanda", "Inggris", "Jerman", "Prancis"),
+            1, Difficulty.HARD))
+
+        add(Question(211, Subject.IPS, "Fauna tipe Asiatis tersebar di Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Tenggara"),
+            0, Difficulty.EASY))
+
+        add(Question(212, Subject.IPS, "Fauna tipe Australis tersebar di Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Utara"),
+            2, Difficulty.EASY))
+
+        add(Question(213, Subject.IPS, "Daerah yang terletak di antara Garis Wallace dan Garis Weber memiliki fauna tipe ...",
+            listOf("Asiatis", "Peralihan", "Australis", "Tropis"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(214, Subject.IPS, "Pembagian wilayah fauna di Indonesia terutama dipengaruhi oleh ...",
+            listOf("Jumlah penduduk", "Kondisi geologi dan sejarah pembentukan pulau", "Banyaknya gunung berapi", "Luas lautan"),
+            1, Difficulty.HARD))
+
+        add(Question(215, Subject.IPS, "Pulau Bali dan Pulau Lombok dipisahkan oleh garis ...",
+            listOf("Garis Weber", "Garis Wallace", "Garis Khatulistiwa", "Garis Bujur"),
+            1, Difficulty.HARD))
+
+        // -- Wilayah Barat / Tipe Asiatis (216-235) --
+        add(Question(216, Subject.IPS, "Hewan berikut yang termasuk fauna tipe Asiatis adalah ...",
+            listOf("Anoa", "Harimau Sumatra", "Kanguru Pohon", "Komodo"),
+            1, Difficulty.EASY))
+
+        add(Question(217, Subject.IPS, "Gajah Sumatra termasuk dalam kelompok fauna Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Selatan"),
+            0, Difficulty.EASY))
+
+        add(Question(218, Subject.IPS, "Hewan badak bercula satu banyak ditemukan di pulau ...",
+            listOf("Sulawesi", "Jawa", "Papua", "Nusa Tenggara"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(219, Subject.IPS, "Orang utan merupakan hewan khas yang hidup di hutan pulau ...",
+            listOf("Jawa dan Bali", "Sumatra dan Kalimantan", "Sulawesi dan Maluku", "Papua dan Nusa Tenggara"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(220, Subject.IPS, "Ciri khas wilayah fauna Asiatis adalah banyaknya ...",
+            listOf("Hewan berkantung", "Mamalia berukuran besar", "Burung berwarna cerah", "Hewan reptil raksasa"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(221, Subject.IPS, "Pohon jati banyak tumbuh di wilayah Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Utara"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(222, Subject.IPS, "Berikut ini yang termasuk flora khas Indonesia bagian barat adalah ...",
+            listOf("Sagu", "Cendana", "Meranti", "Matoa"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(223, Subject.IPS, "Jenis hutan yang mendominasi wilayah Indonesia bagian barat adalah ...",
+            listOf("Hutan savana", "Hutan hujan tropis", "Padang rumput", "Hutan musim"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(224, Subject.IPS, "Hewan yang menjadi maskot dan satwa khas Pulau Sumatra dan terancam punah adalah ...",
+            listOf("Harimau Sumatra", "Komodo", "Cendrawasih", "Anoa"),
+            0, Difficulty.EASY))
+
+        add(Question(225, Subject.IPS, "Tanaman rotan yang dimanfaatkan untuk membuat mebel banyak tumbuh di hutan ...",
+            listOf("Papua", "Kalimantan", "Nusa Tenggara", "Maluku"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(226, Subject.IPS, "Kamper atau kapur barus merupakan hasil hutan khas dari pulau ...",
+            listOf("Sumatra", "Sulawesi", "Papua", "Bali"),
+            0, Difficulty.HARD))
+
+        add(Question(227, Subject.IPS, "Berikut ini hewan yang TIDAK termasuk fauna tipe Asiatis adalah ...",
+            listOf("Gajah", "Harimau", "Kanguru", "Badak"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(228, Subject.IPS, "Bunga Rafflesia arnoldii yang merupakan bunga terbesar di dunia banyak ditemukan di ...",
+            listOf("Papua", "Sumatra", "Sulawesi", "Maluku"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(229, Subject.IPS, "Hewan tapir yang memiliki belalai pendek termasuk fauna Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Tenggara"),
+            0, Difficulty.HARD))
+
+        add(Question(230, Subject.IPS, "Banteng dan kerbau liar termasuk dalam kelompok fauna tipe ...",
+            listOf("Australis", "Peralihan", "Asiatis", "Endemik"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(231, Subject.IPS, "Burung merak dan jalak bali termasuk fauna Indonesia bagian ...",
+            listOf("Timur", "Barat", "Tengah", "Utara"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(232, Subject.IPS, "Wilayah dengan keanekaragaman jenis kera dan primata tertinggi di Indonesia adalah bagian ...",
+            listOf("Timur", "Tengah", "Barat", "Selatan"),
+            2, Difficulty.HARD))
+
+        add(Question(233, Subject.IPS, "Pesut Mahakam, sejenis lumba-lumba air tawar, hidup di sungai di pulau ...",
+            listOf("Kalimantan", "Sulawesi", "Papua", "Jawa"),
+            0, Difficulty.HARD))
+
+        add(Question(234, Subject.IPS, "Berikut ini flora yang menjadi ciri hutan Indonesia bagian barat, kecuali ...",
+            listOf("Pohon jati", "Meranti", "Sagu", "Rotan"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(235, Subject.IPS, "Hutan hujan tropis di Indonesia bagian barat memiliki ciri ...",
+            listOf("Pohon jarang dan rendah", "Lebat, hijau sepanjang tahun, dan beragam jenis pohon", "Didominasi padang rumput", "Banyak kaktus"),
+            1, Difficulty.MEDIUM))
+
+        // -- Wilayah Tengah / Tipe Peralihan (236-255) --
+        add(Question(236, Subject.IPS, "Hewan komodo merupakan satwa endemik yang hanya hidup di ...",
+            listOf("Pulau Jawa", "Pulau Komodo dan sekitarnya di Nusa Tenggara", "Pulau Sumatra", "Pulau Papua"),
+            1, Difficulty.EASY))
+
+        add(Question(237, Subject.IPS, "Anoa merupakan hewan khas yang hanya terdapat di pulau ...",
+            listOf("Sulawesi", "Kalimantan", "Jawa", "Papua"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(238, Subject.IPS, "Burung maleo yang unik karena mengubur telurnya adalah fauna khas dari pulau ...",
+            listOf("Sumatra", "Sulawesi", "Jawa", "Papua"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(239, Subject.IPS, "Babirusa termasuk dalam kelompok fauna tipe ...",
+            listOf("Asiatis", "Peralihan", "Australis", "Tropis"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(240, Subject.IPS, "Komodo termasuk dalam kelompok fauna Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Utara"),
+            1, Difficulty.EASY))
+
+        add(Question(241, Subject.IPS, "Ciri khas fauna tipe peralihan adalah ...",
+            listOf("Semua hewan berkantung", "Memiliki campuran ciri fauna barat dan timur serta banyak spesies endemik", "Hanya berupa mamalia besar", "Tidak memiliki hewan khas"),
+            1, Difficulty.HARD))
+
+        add(Question(242, Subject.IPS, "Pohon eboni atau kayu hitam yang bernilai tinggi merupakan flora khas dari ...",
+            listOf("Sumatra", "Sulawesi", "Papua", "Jawa"),
+            1, Difficulty.HARD))
+
+        add(Question(243, Subject.IPS, "Pohon cendana yang harum dan bernilai ekonomi tinggi banyak tumbuh di ...",
+            listOf("Nusa Tenggara Timur", "Kalimantan", "Papua", "Sumatra"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(244, Subject.IPS, "Berikut ini yang termasuk fauna tipe peralihan adalah ...",
+            listOf("Gajah", "Anoa", "Orang utan", "Kanguru"),
+            1, Difficulty.EASY))
+
+        add(Question(245, Subject.IPS, "Hewan endemik adalah hewan yang ...",
+            listOf("Hidup di seluruh dunia", "Hanya hidup di satu wilayah tertentu", "Mudah berpindah tempat", "Berasal dari luar negeri"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(246, Subject.IPS, "Tarsius, primata terkecil yang bermata besar, merupakan hewan khas dari pulau ...",
+            listOf("Sulawesi", "Jawa", "Papua", "Bali"),
+            0, Difficulty.HARD))
+
+        add(Question(247, Subject.IPS, "Wilayah fauna peralihan terletak di antara dua garis, yaitu garis ...",
+            listOf("Wallace dan Weber", "Lintang dan bujur", "Khatulistiwa dan balik", "Utara dan selatan"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(248, Subject.IPS, "Burung rangkong dan kakatua kecil jambul kuning dapat ditemukan di wilayah ...",
+            listOf("Indonesia bagian barat", "Indonesia bagian tengah", "Eropa", "Afrika"),
+            1, Difficulty.HARD))
+
+        add(Question(249, Subject.IPS, "Anggrek termasuk flora yang dapat ditemukan di wilayah Indonesia bagian ...",
+            listOf("Tengah", "Kutub", "Gurun", "Bawah laut"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(250, Subject.IPS, "Hewan kuskus dan musang sulawesi termasuk dalam fauna tipe ...",
+            listOf("Asiatis", "Peralihan", "Australis", "Endemik dunia"),
+            1, Difficulty.HARD))
+
+        add(Question(251, Subject.IPS, "Komodo dikenal sebagai hewan ...",
+            listOf("Mamalia terbesar", "Kadal atau reptil terbesar di dunia", "Burung tercepat", "Ikan terbesar"),
+            1, Difficulty.EASY))
+
+        add(Question(252, Subject.IPS, "Berikut ini yang BUKAN merupakan fauna khas Sulawesi adalah ...",
+            listOf("Anoa", "Babirusa", "Maleo", "Gajah"),
+            3, Difficulty.MEDIUM))
+
+        add(Question(253, Subject.IPS, "Tingginya jumlah spesies endemik di wilayah peralihan disebabkan oleh ...",
+            listOf("Letaknya yang terisolasi di antara dua wilayah", "Banyaknya penduduk", "Banyaknya kota besar", "Iklim yang sangat dingin"),
+            0, Difficulty.HARD))
+
+        add(Question(254, Subject.IPS, "Taman Nasional Komodo terletak di provinsi ...",
+            listOf("Nusa Tenggara Barat", "Nusa Tenggara Timur", "Bali", "Sulawesi Selatan"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(255, Subject.IPS, "Hewan yang memiliki taring melengkung ke atas dan termasuk fauna peralihan adalah ...",
+            listOf("Babirusa", "Harimau", "Gajah", "Kanguru"),
+            0, Difficulty.MEDIUM))
+
+        // -- Wilayah Timur / Tipe Australis (256-275) --
+        add(Question(256, Subject.IPS, "Burung cendrawasih yang indah merupakan fauna khas dari ...",
+            listOf("Sumatra", "Papua", "Jawa", "Kalimantan"),
+            1, Difficulty.EASY))
+
+        add(Question(257, Subject.IPS, "Hewan kanguru pohon termasuk dalam kelompok fauna Indonesia bagian ...",
+            listOf("Barat", "Tengah", "Timur", "Selatan"),
+            2, Difficulty.EASY))
+
+        add(Question(258, Subject.IPS, "Ciri khas fauna tipe Australis adalah banyaknya hewan ...",
+            listOf("Mamalia besar", "Berkantung (marsupialia) dan burung berwarna cerah", "Primata", "Reptil raksasa"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(259, Subject.IPS, "Pohon sagu yang menjadi makanan pokok masyarakat banyak tumbuh di ...",
+            listOf("Jawa", "Papua dan Maluku", "Bali", "Sumatra"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(260, Subject.IPS, "Burung kasuari merupakan fauna khas dari wilayah ...",
+            listOf("Indonesia bagian barat", "Indonesia bagian tengah", "Indonesia bagian timur", "Indonesia bagian utara"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(261, Subject.IPS, "Buah matoa yang manis merupakan flora khas dari daerah ...",
+            listOf("Aceh", "Papua", "Bali", "Madura"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(262, Subject.IPS, "Jenis vegetasi yang banyak terdapat di Indonesia bagian timur adalah ...",
+            listOf("Hutan hujan tropis lebat", "Hutan savana dan padang rumput", "Hutan bakau saja", "Hutan pinus"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(263, Subject.IPS, "Berikut ini hewan yang termasuk fauna tipe Australis adalah ...",
+            listOf("Harimau", "Kanguru pohon", "Anoa", "Badak"),
+            1, Difficulty.EASY))
+
+        add(Question(264, Subject.IPS, "Hewan berkantung yang hidup di Papua disebut ...",
+            listOf("Primata", "Marsupialia", "Reptilia", "Amfibi"),
+            1, Difficulty.HARD))
+
+        add(Question(265, Subject.IPS, "Pohon kayu putih yang minyaknya bermanfaat untuk kesehatan banyak tumbuh di ...",
+            listOf("Maluku dan Papua", "Sumatra", "Kalimantan", "Jawa Barat"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(266, Subject.IPS, "Burung cendrawasih sering dijuluki sebagai ...",
+            listOf("Burung hantu", "Burung dari surga", "Burung pemangsa", "Burung air"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(267, Subject.IPS, "Berikut ini yang BUKAN merupakan fauna khas Papua adalah ...",
+            listOf("Cendrawasih", "Kasuari", "Kanguru pohon", "Orang utan"),
+            3, Difficulty.MEDIUM))
+
+        add(Question(268, Subject.IPS, "Fauna Indonesia bagian timur memiliki kemiripan dengan fauna di benua Australia karena ...",
+            listOf("Pernah menjadi satu daratan pada masa lampau", "Memiliki jumlah penduduk yang sama", "Berada di garis lintang yang sama persis", "Memiliki bahasa yang sama"),
+            0, Difficulty.HARD))
+
+        add(Question(269, Subject.IPS, "Hewan walaby yang mirip kanguru kecil dapat ditemukan di ...",
+            listOf("Sumatra", "Papua", "Jawa", "Sulawesi"),
+            1, Difficulty.HARD))
+
+        add(Question(270, Subject.IPS, "Padang rumput yang luas di Indonesia bagian timur sangat cocok untuk kegiatan ...",
+            listOf("Penanaman padi sawah", "Peternakan", "Perikanan laut dalam", "Pertambangan emas"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(271, Subject.IPS, "Burung nuri dan kakatua raja berwarna cerah merupakan ciri fauna wilayah ...",
+            listOf("Barat", "Tengah", "Timur", "Selatan"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(272, Subject.IPS, "Makanan pokok masyarakat Papua yang berasal dari batang pohon adalah ...",
+            listOf("Nasi", "Sagu", "Jagung", "Gandum"),
+            1, Difficulty.EASY))
+
+        add(Question(273, Subject.IPS, "Hewan khas Papua yang memiliki bulu indah dan dilindungi adalah ...",
+            listOf("Cendrawasih", "Merak", "Jalak bali", "Elang jawa"),
+            0, Difficulty.EASY))
+
+        add(Question(274, Subject.IPS, "Wilayah Indonesia bagian timur memiliki sedikit jenis mamalia besar karena ...",
+            listOf("Tanahnya tandus", "Sejarah pembentukan daratannya berbeda dari Asia", "Penduduknya sedikit", "Cuacanya selalu dingin"),
+            1, Difficulty.HARD))
+
+        add(Question(275, Subject.IPS, "Berikut ini flora khas Indonesia bagian timur adalah ...",
+            listOf("Jati dan meranti", "Sagu, kayu putih, dan matoa", "Rotan dan kamper", "Anggrek dan eboni"),
+            1, Difficulty.MEDIUM))
+
+        // -- Spesies endemik & identifikasi wilayah (276-290) --
+        add(Question(276, Subject.IPS, "Jalak bali merupakan burung endemik yang hanya hidup di pulau ...",
+            listOf("Jawa", "Bali", "Lombok", "Madura"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(277, Subject.IPS, "Hewan yang termasuk fauna tipe peralihan di antara pilihan berikut adalah ...",
+            listOf("Gajah Sumatra", "Komodo", "Cendrawasih", "Orang utan"),
+            1, Difficulty.EASY))
+
+        add(Question(278, Subject.IPS, "Pasangan hewan dan asal wilayah yang benar adalah ...",
+            listOf("Harimau Sumatra – Indonesia timur", "Anoa – Indonesia tengah", "Kanguru pohon – Indonesia barat", "Orang utan – Papua"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(279, Subject.IPS, "Hewan elang jawa yang menjadi inspirasi lambang negara Garuda merupakan satwa endemik dari pulau ...",
+            listOf("Sumatra", "Jawa", "Kalimantan", "Sulawesi"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(280, Subject.IPS, "Berikut ini yang merupakan hewan endemik Indonesia adalah ...",
+            listOf("Singa", "Komodo", "Zebra", "Panda"),
+            1, Difficulty.EASY))
+
+        add(Question(281, Subject.IPS, "Bunga bangkai raksasa (Amorphophallus titanum) merupakan tumbuhan endemik dari pulau ...",
+            listOf("Sumatra", "Papua", "Sulawesi", "Bali"),
+            0, Difficulty.HARD))
+
+        add(Question(282, Subject.IPS, "Pasangan flora dan wilayah asal yang tepat adalah ...",
+            listOf("Sagu – Indonesia barat", "Cendana – Nusa Tenggara", "Jati – Papua", "Matoa – Sumatra"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(283, Subject.IPS, "Hewan yang termasuk fauna Asiatis di antara pilihan berikut adalah ...",
+            listOf("Babirusa", "Kasuari", "Badak bercula satu", "Maleo"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(284, Subject.IPS, "Burung maleo, anoa, dan babirusa merupakan hewan endemik dari pulau ...",
+            listOf("Jawa", "Sumatra", "Sulawesi", "Papua"),
+            2, Difficulty.MEDIUM))
+
+        add(Question(285, Subject.IPS, "Keanekaragaman hayati berarti ...",
+            listOf("Keseragaman jenis makhluk hidup", "Beragamnya jenis makhluk hidup di suatu tempat", "Hewan yang hidup di air", "Tumbuhan yang berbunga"),
+            1, Difficulty.EASY))
+
+        add(Question(286, Subject.IPS, "Hewan berikut yang merupakan fauna Australis adalah ...",
+            listOf("Kuskus dan kanguru pohon", "Harimau dan gajah", "Anoa dan komodo", "Badak dan tapir"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(287, Subject.IPS, "Indonesia disebut sebagai negara megabiodiversitas karena ...",
+            listOf("Memiliki banyak penduduk", "Memiliki keanekaragaman hayati yang sangat tinggi", "Wilayahnya sempit", "Hanya memiliki satu jenis hewan"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(288, Subject.IPS, "Hewan orang utan dan gajah merupakan contoh fauna dari wilayah ...",
+            listOf("Indonesia bagian barat", "Indonesia bagian tengah", "Indonesia bagian timur", "Australia"),
+            0, Difficulty.EASY))
+
+        add(Question(289, Subject.IPS, "Hewan yang memiliki taring panjang melengkung dan endemik Sulawesi adalah ...",
+            listOf("Babirusa", "Komodo", "Cendrawasih", "Orang utan"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(290, Subject.IPS, "Tumbuhan kantong semar yang memakan serangga banyak ditemukan di hutan ...",
+            listOf("Kalimantan dan Sumatra", "Nusa Tenggara", "Pulau Jawa", "Madura"),
+            0, Difficulty.HARD))
+
+        // -- Ancaman keanekaragaman hayati & konservasi (291-300) --
+        add(Question(291, Subject.IPS, "Salah satu ancaman terbesar terhadap keanekaragaman hayati adalah ...",
+            listOf("Penanaman pohon", "Fragmentasi atau kerusakan habitat", "Pembuatan taman nasional", "Pelestarian hewan"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(292, Subject.IPS, "Upaya pelestarian hewan dan tumbuhan di habitat aslinya disebut pelestarian ...",
+            listOf("In situ", "Ex situ", "Reboisasi", "Urbanisasi"),
+            0, Difficulty.HARD))
+
+        add(Question(293, Subject.IPS, "Pelestarian hewan dengan memindahkannya ke kebun binatang atau penangkaran disebut pelestarian ...",
+            listOf("In situ", "Ex situ", "Tebang pilih", "Terasering"),
+            1, Difficulty.HARD))
+
+        add(Question(294, Subject.IPS, "Kawasan yang dilindungi untuk melestarikan tumbuhan, hewan, dan ekosistemnya disebut ...",
+            listOf("Taman kota", "Taman nasional", "Taman bermain", "Kebun raya kota"),
+            1, Difficulty.EASY))
+
+        add(Question(295, Subject.IPS, "Perburuan liar terhadap satwa langka dapat menyebabkan ...",
+            listOf("Bertambahnya jumlah hewan", "Kepunahan jenis hewan", "Hutan menjadi subur", "Hewan menjadi sehat"),
+            1, Difficulty.EASY))
+
+        add(Question(296, Subject.IPS, "Berikut ini termasuk usaha pelestarian lingkungan, kecuali ...",
+            listOf("Reboisasi", "Membuat suaka margasatwa", "Menebang hutan secara liar", "Melindungi satwa langka"),
+            2, Difficulty.EASY))
+
+        add(Question(297, Subject.IPS, "Penebangan hutan secara besar-besaran (deforestasi) dapat mengakibatkan ...",
+            listOf("Hilangnya tempat tinggal hewan", "Bertambahnya jumlah pohon", "Udara semakin bersih", "Hewan semakin banyak"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(298, Subject.IPS, "Tempat perlindungan khusus untuk satwa yang hampir punah disebut ...",
+            listOf("Cagar alam", "Suaka margasatwa", "Hutan lindung", "Kebun binatang"),
+            1, Difficulty.MEDIUM))
+
+        add(Question(299, Subject.IPS, "Kawasan yang dilindungi untuk melestarikan tumbuhan dan keadaan alamnya disebut ...",
+            listOf("Cagar alam", "Suaka margasatwa", "Taman bermain", "Kawasan industri"),
+            0, Difficulty.MEDIUM))
+
+        add(Question(300, Subject.IPS, "Sikap yang tepat untuk menjaga keanekaragaman hayati Indonesia adalah ...",
+            listOf("Berburu hewan langka", "Menjaga hutan dan tidak merusak habitat satwa", "Menebang pohon sembarangan", "Membuang sampah ke sungai"),
+            1, Difficulty.EASY))
     }
 }

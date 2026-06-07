@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.belajargembira.ui.navigation.AppNavigation
@@ -23,6 +24,11 @@ class MainActivity : ComponentActivity() {
                 val windowSizeClass = calculateWindowSizeClass(this)
                 val viewModel: QuizViewModel = viewModel()
                 val navController = rememberNavController()
+
+                LaunchedEffect(Unit) {
+                    viewModel.checkForUpdate(BuildConfig.VERSION_NAME)
+                }
+
                 AppNavigation(
                     navController = navController,
                     windowSizeClass = windowSizeClass,

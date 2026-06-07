@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
@@ -24,9 +25,13 @@ import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import android.content.Intent
+import android.net.Uri
 import com.belajargembira.BuildConfig
+import com.belajargembira.data.update.UpdateInfo
 import com.belajargembira.viewmodel.HomeUiState
 
 private val questionCountOptions = listOf(25, 50, 75, 100)
@@ -37,9 +42,11 @@ fun HomeScreen(
     homeState: HomeUiState,
     onCountSelected: (Int) -> Unit,
     onStart: () -> Unit,
+    updateInfo: UpdateInfo? = null,
     modifier: Modifier = Modifier
 ) {
     val isWide = windowSizeClass.widthSizeClass != WindowWidthSizeClass.Compact
+    val context = LocalContext.current
 
     Surface(
         modifier = modifier.fillMaxSize(),
@@ -56,6 +63,54 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Spacer(modifier = Modifier.height(32.dp))
+
+                if (updateInfo != null) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "🎉 Versi baru ${updateInfo.versionName} tersedia!",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                textAlign = TextAlign.Center
+                            )
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                text = "Perbarui aplikasimu untuk fitur dan soal terbaru.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer.copy(alpha = 0.8f),
+                                textAlign = TextAlign.Center
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Button(
+                                onClick = {
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(updateInfo.downloadUrl))
+                                    context.startActivity(intent)
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.tertiary,
+                                    contentColor = MaterialTheme.colorScheme.onTertiary
+                                )
+                            ) {
+                                Text(
+                                    text = "Perbarui Sekarang",
+                                    style = MaterialTheme.typography.titleSmall
+                                )
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
 
                 Text(
                     text = "Belajar\nGembira",

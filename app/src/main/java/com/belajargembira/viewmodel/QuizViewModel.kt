@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.belajargembira.data.model.Question
 import com.belajargembira.data.repository.QuestionRepository
+import com.belajargembira.data.update.UpdateChecker
+import com.belajargembira.data.update.UpdateInfo
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,7 +59,23 @@ class QuizViewModel(
     private val _quizState = MutableStateFlow<QuizUiState>(QuizUiState.Idle)
     val quizState: StateFlow<QuizUiState> = _quizState.asStateFlow()
 
+    private val _updateState = MutableStateFlow<UpdateInfo?>(null)
+    val updateState: StateFlow<UpdateInfo?> = _updateState.asStateFlow()
+
     private var timerJob: Job? = null
+    private var updateChecked = false
+
+    /**
+     * Mengecek versi terbaru aplikasi secara online (sekali per sesi).
+     * Jika ada versi lebih baru, [updateState] akan terisi dan kartu update muncul di Home.
+     */
+    fun checkForUpdate(currentVersion: String) {
+        if (updateChecked) return
+        updateChecked = true
+        viewModelScope.launch {
+            _updateState.value = UpdateChecker.checkForUpdate(currentVersion)
+        }
+    }
 
     fun selectQuestionCount(count: Int) {
         val validated = count.coerceIn(25, 100)

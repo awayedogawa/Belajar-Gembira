@@ -27,7 +27,8 @@ fun AppNavigation(
                 onStart = {
                     viewModel.startQuiz()
                     navController.navigate(Screen.Quiz.route)
-                }
+                },
+                updateInfo = viewModel.updateState.collectAsState().value
             )
         }
 

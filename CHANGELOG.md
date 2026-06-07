@@ -73,4 +73,29 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.3.0] - 2026-06-07
+
+### Ditambahkan
+- **100 soal baru OSN IPS SD** (soal 201–300) bertema **Keanekaragaman Hayati &
+  Persebaran Flora-Fauna Indonesia** sesuai kisi-kisi:
+  - Garis Wallace & Garis Weber (pembagian wilayah)
+  - Wilayah Barat / Tipe Asiatis (Harimau, Gajah, Orang Utan, pohon Jati, Meranti)
+  - Wilayah Tengah / Tipe Peralihan (Anoa, Komodo, Maleo, Babirusa, Eboni, Cendana)
+  - Wilayah Timur / Tipe Australis (Cendrawasih, Kanguru Pohon, Kasuari, Sagu, Matoa)
+  - Spesies endemik & identifikasi wilayah
+  - Ancaman keanekaragaman hayati & konservasi (taman nasional, suaka margasatwa)
+  - **Total bank soal kini 300 soal**
+- **Fitur cek pembaruan otomatis**: saat aplikasi dibuka, sistem memeriksa
+  versi terbaru secara online. Jika ada versi baru, muncul kartu pemberitahuan
+  beserta tombol **Perbarui Sekarang** untuk mengunduh APK terbaru.
+
+### Teknis
+- Pengecekan versi via GitHub Releases API (tanpa token, aman saat offline → tidak crash)
+- Tambah izin `INTERNET` di AndroidManifest
+- Berkas baru `data/update/UpdateChecker.kt` (HttpURLConnection + org.json, tanpa dependency baru)
+- Workflow `release.yml`: push tag `v*` → otomatis buat GitHub Release + lampirkan APK
+- `versionCode` naik ke 4
+
+---
+
 <!-- Tambahkan versi baru di atas baris ini -->
