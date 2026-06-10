@@ -1,5 +1,15 @@
 package com.belajargembira.data.model
 
+/**
+ * Jenis latihan yang tersedia di aplikasi:
+ * - [OSN] Olimpiade Sains Nasional — dikelompokkan per jenjang (SD/SMP)
+ * - [SAS] Sumatif Akhir Semester — dikelompokkan per kelas (1-6 SD)
+ */
+enum class ExamType(val displayName: String) {
+    OSN("OSN"),
+    SAS("SAS")
+}
+
 enum class Level(val displayName: String) {
     SD("SD"),
     SMP("SMP")

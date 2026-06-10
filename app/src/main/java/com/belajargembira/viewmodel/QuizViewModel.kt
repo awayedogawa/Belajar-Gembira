@@ -2,6 +2,7 @@ package com.belajargembira.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.belajargembira.data.model.ExamType
 import com.belajargembira.data.model.Level
 import com.belajargembira.data.model.Question
 import com.belajargembira.data.model.Subject
@@ -20,7 +21,9 @@ data class HomeUiState(
 )
 
 data class SelectionUiState(
+    val examType: ExamType? = null,
     val level: Level? = null,
+    val grade: Int? = null,
     val subject: Subject? = null
 )
 
@@ -126,37 +129,53 @@ class QuizViewModel(
     }
 
     /**
-     * Pilih jenjang (SD/SMP) — mereset mata pelajaran yang sebelumnya terpilih.
+     * Pilih jenjang OSN (SD/SMP) — mereset pilihan kelas & mapel sebelumnya.
      */
     fun selectLevel(level: Level) {
-        _selectionState.value = SelectionUiState(level = level)
+        _selectionState.value = SelectionUiState(examType = ExamType.OSN, level = level)
+    }
+
+    /**
+     * Pilih kelas SAS (1-6 SD) — mereset pilihan jenjang & mapel sebelumnya.
+     */
+    fun selectGrade(grade: Int) {
+        _selectionState.value = SelectionUiState(examType = ExamType.SAS, grade = grade)
     }
 
     /**
      * Coba pilih mata pelajaran. Mengembalikan true & menyimpan pilihan jika
-     * bank soal untuk kombinasi jenjang+mapel ini sudah tersedia; false jika
-     * belum (layar pemanggil akan menampilkan pesan "fitur belum diaktifkan").
+     * bank soal untuk kombinasi latihan ini sudah tersedia; false jika belum
+     * (layar pemanggil akan menampilkan pesan "fitur belum diaktifkan").
      */
     fun trySelectSubject(subject: Subject): Boolean {
-        val level = _selectionState.value.level ?: return false
-        return if (repository.hasQuestions(level, subject)) {
-            _selectionState.value = _selectionState.value.copy(subject = subject)
-            true
-        } else {
-            false
+        val selection = _selectionState.value
+        val available = when (selection.examType) {
+            ExamType.OSN -> selection.level != null && repository.hasOsnQuestions(selection.level, subject)
+            ExamType.SAS -> selection.grade != null && repository.hasSasQuestions(selection.grade, subject)
+            null -> false
         }
+        if (available) {
+            _selectionState.value = selection.copy(subject = subject)
+        }
+        return available
     }
 
     fun startQuiz() {
         val selection = _selectionState.value
-        val level = selection.level ?: Level.SD
-        val subject = selection.subject ?: Subject.IPS
         val count = _homeState.value.questionCount
-        val questions = repository.getRandomQuestions(count, level, subject).map { QuizQuestionState(it) }
+        val pool = when (selection.examType) {
+            ExamType.SAS -> repository.getRandomSasQuestions(
+                count, selection.grade ?: 4, selection.subject ?: Subject.MATEMATIKA
+            )
+            else -> repository.getRandomOsnQuestions(
+                count, selection.level ?: Level.SD, selection.subject ?: Subject.IPS
+            )
+        }
+        val questions = pool.map { QuizQuestionState(it) }
         _quizState.value = QuizUiState.InProgress(
             questions = questions,
             currentIndex = 0,
-            totalCount = count
+            totalCount = questions.size
         )
         startTimer()
     }

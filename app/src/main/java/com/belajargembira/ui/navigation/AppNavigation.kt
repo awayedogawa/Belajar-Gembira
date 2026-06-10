@@ -6,8 +6,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.belajargembira.data.model.ExamType
 import com.belajargembira.data.model.Level
 import com.belajargembira.data.model.Subject
+import com.belajargembira.ui.screens.GradeSelectionScreen
 import com.belajargembira.ui.screens.HomeScreen
 import com.belajargembira.ui.screens.LevelSelectionScreen
 import com.belajargembira.ui.screens.QuizScreen
@@ -30,6 +32,9 @@ fun AppNavigation(
                 onStartLatihan = {
                     navController.navigate(Screen.LevelSelection.route)
                 },
+                onStartSas = {
+                    navController.navigate(Screen.GradeSelection.route)
+                },
                 updateInfo = viewModel.updateState.collectAsState().value,
                 isCheckingUpdate = viewModel.isCheckingUpdate.collectAsState().value,
                 updateCheckMessage = viewModel.updateCheckMessage.collectAsState().value,
@@ -49,25 +54,75 @@ fun AppNavigation(
             )
         }
 
-        composable(Screen.SubjectSelection.route) {
-            val selection = viewModel.selectionState.collectAsState().value
-            SubjectSelectionScreen(
+        composable(Screen.GradeSelection.route) {
+            GradeSelectionScreen(
                 windowSizeClass = windowSizeClass,
-                level = selection.level ?: Level.SD,
-                onSelectSubject = viewModel::trySelectSubject,
-                onNavigateToQuizSetup = {
-                    navController.navigate(Screen.QuizSetup.route)
+                onGradeSelected = { grade ->
+                    viewModel.selectGrade(grade)
+                    navController.navigate(Screen.SubjectSelection.route)
                 },
                 onBack = { navController.popBackStack() }
             )
         }
 
+        composable(Screen.SubjectSelection.route) {
+            val selection = viewModel.selectionState.collectAsState().value
+            if (selection.examType == ExamType.SAS) {
+                val grade = selection.grade ?: 4
+                SubjectSelectionScreen(
+                    windowSizeClass = windowSizeClass,
+                    prompt = "Mata pelajaran apa yang ingin kamu latih?\nSAS Kelas $grade",
+                    subjectLabel = { subject -> subject.displayName },
+                    unavailableMessage = { subject ->
+                        "Latihan SAS ${subject.displayName} Kelas $grade " +
+                            "belum diaktifkan. Nantikan pembaruan berikutnya ya! 🚧"
+                    },
+                    onSelectSubject = viewModel::trySelectSubject,
+                    onNavigateToQuizSetup = {
+                        navController.navigate(Screen.QuizSetup.route)
+                    },
+                    onBack = { navController.popBackStack() }
+                )
+            } else {
+                val level = selection.level ?: Level.SD
+                SubjectSelectionScreen(
+                    windowSizeClass = windowSizeClass,
+                    prompt = "OSN apa yang ingin kamu latih?\nJenjang ${level.displayName}",
+                    subjectLabel = { subject -> "OSN ${subject.displayName}" },
+                    unavailableMessage = { subject ->
+                        "Latihan ${subject.displayName} jenjang ${level.displayName} " +
+                            "belum diaktifkan. Nantikan pembaruan berikutnya ya! 🚧"
+                    },
+                    onSelectSubject = viewModel::trySelectSubject,
+                    onNavigateToQuizSetup = {
+                        navController.navigate(Screen.QuizSetup.route)
+                    },
+                    onBack = { navController.popBackStack() }
+                )
+            }
+        }
+
         composable(Screen.QuizSetup.route) {
             val selection = viewModel.selectionState.collectAsState().value
+            val subjectName = (selection.subject ?: Subject.IPS).displayName
+            val isSas = selection.examType == ExamType.SAS
+            val contextName = if (isSas) {
+                "Kelas ${selection.grade ?: 4}"
+            } else {
+                "Jenjang ${(selection.level ?: Level.SD).displayName}"
+            }
             QuizSetupScreen(
                 windowSizeClass = windowSizeClass,
-                level = selection.level ?: Level.SD,
-                subject = selection.subject ?: Subject.IPS,
+                topBarTitle = if (isSas) {
+                    "SAS $subjectName $contextName"
+                } else {
+                    "OSN $subjectName ${(selection.level ?: Level.SD).displayName}"
+                },
+                headline = if (isSas) {
+                    "Latihan SAS $subjectName\n$contextName"
+                } else {
+                    "Latihan OSN $subjectName\n$contextName"
+                },
                 homeState = viewModel.homeState.collectAsState().value,
                 onCountSelected = viewModel::selectQuestionCount,
                 onStart = {

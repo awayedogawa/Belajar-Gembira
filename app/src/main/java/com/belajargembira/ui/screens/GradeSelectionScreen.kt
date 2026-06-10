@@ -9,80 +9,50 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Snackbar
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.belajargembira.data.model.Subject
-import kotlinx.coroutines.launch
 
-private val subjectOptions = listOf(
-    Subject.IPS,
-    Subject.IPA,
-    Subject.MATEMATIKA,
-    Subject.BAHASA_INDONESIA
-)
+private val gradeOptions = (1..6).toList()
 
-/**
- * Layar pilih mata pelajaran — dipakai bersama oleh alur OSN dan SAS.
- * Teks judul, label tombol, dan pesan "belum diaktifkan" diatur lewat parameter
- * agar sesuai konteks masing-masing alur.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SubjectSelectionScreen(
+fun GradeSelectionScreen(
     windowSizeClass: WindowSizeClass,
-    prompt: String,
-    subjectLabel: (Subject) -> String,
-    unavailableMessage: (Subject) -> String,
-    onSelectSubject: (Subject) -> Boolean,
-    onNavigateToQuizSetup: () -> Unit,
+    onGradeSelected: (Int) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     BackHandler { onBack() }
     val isWide = windowSizeClass.widthSizeClass != WindowWidthSizeClass.Compact
-    val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Pilih Mata Pelajaran", style = MaterialTheme.typography.titleMedium) },
+                title = { Text("Pilih Kelas", style = MaterialTheme.typography.titleMedium) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Kembali")
                     }
                 }
             )
-        },
-        snackbarHost = {
-            SnackbarHost(hostState = snackbarHostState) { data ->
-                Snackbar(
-                    snackbarData = data,
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
-                )
-            }
         },
         modifier = modifier
     ) { paddingValues ->
@@ -94,37 +64,28 @@ fun SubjectSelectionScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .then(if (isWide) Modifier.widthIn(max = 560.dp) else Modifier)
-                    .padding(horizontal = 24.dp, vertical = 16.dp),
+                    .padding(horizontal = 24.dp, vertical = 16.dp)
+                    .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = prompt,
+                    text = "Latihan SAS untuk kelas berapa?",
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(32.dp))
 
-                subjectOptions.forEach { subject ->
-                    OutlinedButton(
-                        onClick = {
-                            val available = onSelectSubject(subject)
-                            if (available) {
-                                onNavigateToQuizSetup()
-                            } else {
-                                coroutineScope.launch {
-                                    snackbarHostState.showSnackbar(unavailableMessage(subject))
-                                }
-                            }
-                        },
+                gradeOptions.forEach { grade ->
+                    Button(
+                        onClick = { onGradeSelected(grade) },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(56.dp),
-                        shape = MaterialTheme.shapes.medium
+                            .height(56.dp)
                     ) {
                         Text(
-                            text = subjectLabel(subject),
+                            text = "Kelas $grade",
                             style = MaterialTheme.typography.titleMedium
                         )
                     }

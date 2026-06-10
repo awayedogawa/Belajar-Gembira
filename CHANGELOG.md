@@ -13,6 +13,32 @@ dan versioning mengikuti [Semantic Versioning](https://semver.org/lang/id/):
 
 ---
 
+## [1.7.0] - 2026-06-10
+
+### Ditambahkan
+- **Menu baru "📝 Latihan SAS" (Sumatif Akhir Semester)** di layar utama,
+  berdampingan dengan Latihan OSN
+  - Alur: **Latihan SAS → Pilih Kelas (1-6 SD) → Pilih Mata Pelajaran →
+    Pilih Jumlah Soal → Kuis**
+  - **100 soal Matematika SAS Kelas 4 SD — Semester 2 (genap)** mencakup:
+    pecahan & desimal, pengukuran (panjang/berat/waktu), bangun datar &
+    sudut, keliling & luas, data & diagram, serta pola bilangan
+  - Kelas dan mata pelajaran lain yang bank soalnya belum tersedia
+    menampilkan pesan **"belum diaktifkan"** — soal kelas lain menyusul di
+    versi berikutnya
+
+### Teknis
+- Model data baru `ExamType` (OSN, SAS); `Question` kini punya field
+  `examType` dan `grade` (kelas, khusus soal SAS)
+- Bank soal baru `SasMatematikaKelas4Questions` (ID 401-500)
+- `QuestionRepository` dipecah menjadi `getRandomOsnQuestions`/`hasOsnQuestions`
+  dan `getRandomSasQuestions`/`hasSasQuestions`
+- Layar baru `GradeSelectionScreen`; `SubjectSelectionScreen` dan
+  `QuizSetupScreen` dijadikan generik agar dipakai bersama alur OSN & SAS
+- `versionCode` naik ke 9
+
+---
+
 ## [1.6.1] - 2026-06-07
 
 ### Diperbaiki

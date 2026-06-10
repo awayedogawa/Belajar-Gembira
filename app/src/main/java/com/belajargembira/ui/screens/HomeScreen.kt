@@ -41,6 +41,7 @@ import com.belajargembira.data.update.UpdateInfo
 fun HomeScreen(
     windowSizeClass: WindowSizeClass,
     onStartLatihan: () -> Unit,
+    onStartSas: () -> Unit,
     updateInfo: UpdateInfo? = null,
     isCheckingUpdate: Boolean = false,
     updateCheckMessage: String? = null,
@@ -131,7 +132,7 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Latihan Soal Olimpiade Sains Nasional",
+                    text = "Latihan Soal OSN & Sumatif Akhir Semester",
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                     textAlign = TextAlign.Center
@@ -147,6 +148,24 @@ fun HomeScreen(
                 ) {
                     Text(
                         text = "🏆 Latihan OSN",
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = onStartSas,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.secondary,
+                        contentColor = MaterialTheme.colorScheme.onSecondary
+                    )
+                ) {
+                    Text(
+                        text = "📝 Latihan SAS",
                         style = MaterialTheme.typography.titleMedium
                     )
                 }

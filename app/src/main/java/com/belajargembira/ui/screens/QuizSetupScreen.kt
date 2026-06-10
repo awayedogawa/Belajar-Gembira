@@ -31,8 +31,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.belajargembira.data.model.Level
-import com.belajargembira.data.model.Subject
 import com.belajargembira.viewmodel.HomeUiState
 
 private val questionCountOptions = listOf(25, 50, 75, 100)
@@ -41,8 +39,8 @@ private val questionCountOptions = listOf(25, 50, 75, 100)
 @Composable
 fun QuizSetupScreen(
     windowSizeClass: WindowSizeClass,
-    level: Level,
-    subject: Subject,
+    topBarTitle: String,
+    headline: String,
     homeState: HomeUiState,
     onCountSelected: (Int) -> Unit,
     onStart: () -> Unit,
@@ -55,7 +53,7 @@ fun QuizSetupScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("OSN ${subject.displayName} ${level.displayName}", style = MaterialTheme.typography.titleMedium) },
+                title = { Text(topBarTitle, style = MaterialTheme.typography.titleMedium) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Kembali")
@@ -78,7 +76,7 @@ fun QuizSetupScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Latihan OSN ${subject.displayName}\nJenjang ${level.displayName}",
+                    text = headline,
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onBackground,
                     textAlign = TextAlign.Center
